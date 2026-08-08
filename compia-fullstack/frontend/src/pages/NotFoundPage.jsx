@@ -1,0 +1,1 @@
+import {Link} from 'react-router-dom'; export const NotFoundPage=()=> <main className="container section"><div className="card empty"><h1>404</h1><p>Página não encontrada.</p><Link className="btn btn-primary" to="/">Voltar ao início</Link></div></main>

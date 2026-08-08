@@ -1,0 +1,47 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: compia
+      POSTGRES_USER: compia
+      POSTGRES_PASSWORD: compia
+    volumes:
+      - compia_postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U compia -d compia"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      APP_ENV: development
+      SECRET_KEY: local-development-secret-change-in-production
+      DATABASE_URL: postgresql+psycopg://compia:compia@db:5432/compia
+      CORS_ORIGINS: http://localhost:5173
+      FRONTEND_URL: http://localhost:5173
+      SHIPPING_FLAT_RATE: "19.90"
+      PAYMENT_PROVIDER: mock
+      ADMIN_EMAIL: admin@compia.com.br
+      ADMIN_PASSWORD: Admin123!
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:8000/api/v1
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+
+volumes:
+  compia_postgres:

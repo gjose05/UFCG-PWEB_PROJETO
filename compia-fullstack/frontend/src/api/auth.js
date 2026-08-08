@@ -1,0 +1,1 @@
+import {api} from './client'; export const authApi={login:(email,password)=>api('/auth/login',{method:'POST',body:JSON.stringify({email,password})}),register:(full_name,email,password)=>api('/auth/register',{method:'POST',body:JSON.stringify({full_name,email,password})}),me:()=>api('/auth/me')}

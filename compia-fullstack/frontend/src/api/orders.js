@@ -1,0 +1,1 @@
+import {api} from './client'; export const ordersApi={checkout:p=>api('/orders/checkout',{method:'POST',body:JSON.stringify(p)}),mine:()=>api('/orders/mine'),get:id=>api(`/orders/${id}`),downloads:id=>api(`/orders/${id}/downloads`)}

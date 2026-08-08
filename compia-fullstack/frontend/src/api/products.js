@@ -1,0 +1,1 @@
+import {api} from './client'; export const productsApi={list:(f={})=>{const p=new URLSearchParams(); Object.entries(f).forEach(([k,v])=>{if(v)p.set(k,v)}); return api(`/products${p.size?'?'+p:''}`)},get:id=>api(`/products/${id}`)}
