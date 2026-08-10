@@ -1,4 +1,4 @@
-# COMPIA Editora — E-commerce Full Stack
+# COMPIA Editora — E-commerce Full Stack - https://ufcg-pweb-projeto.vercel.app/
 
 Projeto reconstruído a partir do protótipo HTML/CSS/JS, agora com frontend React, backend FastAPI e PostgreSQL real.
 
